@@ -44,6 +44,7 @@ public class CabBookingRepository {
     }
 
     public void chooseRide(String username, String driverName) {
+        // Logic for booking the ride, updating driver status, etc.
         User user = findUserByUsername(username);
         if (user == null) {
             throw new RuntimeException("User not found");
@@ -53,14 +54,11 @@ public class CabBookingRepository {
         if (selectedDriver == null || !selectedDriver.isAvailable()) {
             throw new RuntimeException("Invalid driver selection");
         }
-
-
-        // Logic for booking the ride, updating driver status, etc.
         selectedDriver.setAvailable(false);
     }
 
     private boolean isDriverInRange(Driver driver, Location source, Location destination) {
-        // Implement logic to check if the driver is in the range of the source and destination
+        // logic to check if the driver is in the range of the source and destination
         double driverLatitude = driver.getCurrentLocation().getLatitude();
         double driverLongitude = driver.getCurrentLocation().getLongitude();
         double horizontalDistance = driverLatitude - source.getLatitude();
